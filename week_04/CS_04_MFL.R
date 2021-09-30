@@ -5,6 +5,18 @@ library(tidyverse)
 install.packages("nycflights13")
 ?nycflights13
 
+
+####way to do it with piping
+farthest_airport <-flights%>%
+  select(distance,dest) %>%
+  arrange(desc(distance))%>%
+  slice(1)%>%
+  left_join(airports, by=c("dest"="faa")) %>%
+  sleect(name) %>%
+  as.character()
+
+
+###LONG WAY TO DO IT
 #sort by distance of travel 
 glimpse(flights) 
 flights_to_join <- arrange(flights, desc(distance))
@@ -33,4 +45,8 @@ arrange(joined_set, desc(distance))
   geom_point(col="red") +
   coord_quickmap()
 
+
+  
+
+  
 

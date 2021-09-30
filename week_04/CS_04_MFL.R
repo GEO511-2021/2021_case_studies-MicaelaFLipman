@@ -1,12 +1,9 @@
 
 ###Micaela Lipman 9.28.21 ###Case Study 4
 
-library(ggplot2)
 library(tidyverse)
-#Note. Only install once
 install.packages("nycflights13")
 ?nycflights13
-library(nycflights13)
 
 #sort by distance of travel 
 glimpse(flights) 
@@ -22,3 +19,18 @@ arrange(joined_set, desc(distance))
 first_row<-slice_head(joined_set)
 farthestairportfromnyc<-select(first_row, name)
 farthestairportfromnyc
+
+
+setDT(df)
+joined_set <-left_join (flights_to_join, airports, by =c("dest" = "faa"))
+arrange(joined_set, desc(distance)) 
+  
+####Trying to figure out the map example
+  airports %>%
+  distinct(lon,lat) %>%
+  ggplot(aes(lon, lat)) +
+  borders("world") +
+  geom_point(col="red") +
+  coord_quickmap()
+
+

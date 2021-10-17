@@ -1,5 +1,4 @@
 library (ggplot2)
-install.packages("gapminder")
 library (gapminder)
 library (dplyr)
 str(gapminder)
@@ -17,11 +16,20 @@ ggplot(gapminder) +
 
 ##prepare data for second plot 
 str(gapminder)
-gapminder %>%
-  group_by (continent, year) %>%
-gapminder_continent <-summarize(gdpPercapweighted = weighted.mean(x = gdpPercap, w = pop), pop = sum(as.numeric(pop)))
+gapminder_continent<-gapminder %>%
+  group_by (continent, year)
+str(gapminder_continent)
 
+?summarize
+summarise(gapminder, gdpPercapweighted = weighted.mean(x = gdpPercap, w = pop)
+summarise(gapminder, pop = sum(as.numeric(pop))
 ##creating the second row of plots 
-ggplot(gapminder,gapminder_continent) + geom_line() + geom_point() + geom_line(data=newdata,gapminder_continent) + geom_point(data=newdata,gapminder_continent) + facet_wrap() + theme_bw() + labs(...)
-
+ggplot(gapminder) + 
+  geom_line(aes(x=year, y = gdpPercapweighted, color = continent)) + 
+  geom_point(aes(x=year, y = gdpPercapweighted, color = continent, size=pop/10000)) + 
+  geom_line(data=gapminder_continent, aes(x=year, y = gdpPercapweighted)) + 
+  geom_point(data=gapminder_continent, aes(x=year, y = gdpPercapweighted, size=pop/10000)) + 
+  facet_wrap(~ continent, nrow=1) + 
+  theme_bw() + 
+  labs(x= "Year", y = "GDP per capita", size = "Population (100k)")
         

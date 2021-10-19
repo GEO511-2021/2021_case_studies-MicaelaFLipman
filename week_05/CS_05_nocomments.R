@@ -22,10 +22,8 @@ albers="+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +
 world_projected <- st_transform(world, crs = albers)
 #filter
 canada<-world_projected %>%
-filter(name_long=="Canada")
-
-#buffer
-st_buffer(canada, dist = 1000)
+filter(name_long=="Canada") %>%
+st_buffer(dist = 10000)
 
 
 ##US data cleaning

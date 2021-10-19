@@ -12,5 +12,6 @@ ggplot(world,aes(x=gdpPercap, color=continent, fill=continent)) +
    geom_density(alpha=0.5) + 
   theme(legend.position="bottom")
 
+reprex(venue="gh")
 
 

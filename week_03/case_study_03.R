@@ -12,17 +12,19 @@ ggplot(gapminder) +
   scale_y_continuous(trans = "sqrt") + 
   theme_bw() + 
   labs(x= "Life Expectancy", y = "GDP per capita", size = "Population (100k)")
-
+ggsave("Plot1.png", width = 15, height = 5) 
 
 ##prepare data for second plot 
+data(gapminder)
 str(gapminder)
 gapminder_continent<-gapminder %>%
   group_by (continent, year)
 str(gapminder_continent)
 
-?summarize
-summarise(gapminder, gdpPercapweighted = weighted.mean(x = gdpPercap, w = pop)
-summarise(gapminder, pop = sum(as.numeric(pop))
+
+summarize(gdpPercapweighted = weighted.mean(x=gdpPercap, w = pop), pop = sum(as.numeric(pop)))
+          
+          
 ##creating the second row of plots 
 ggplot(gapminder) + 
   geom_line(aes(x=year, y = gdpPercapweighted, color = continent)) + 

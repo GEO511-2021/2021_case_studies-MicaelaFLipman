@@ -1,3 +1,7 @@
+##Micaela Lipman 
+##Case Study 2 
+##GEO 511
+
 library (tidyverse)
 library (ggplot2)
 
@@ -13,26 +17,22 @@ temp=read_table(dataurl,
                               "AUG","SEP","OCT","NOV",  
                               "DEC","DJF","MAM","JJA",  
                               "SON","metANN"))
-# renaming is necessary becuase they used dashes ("-")
-# in the column names and R doesn't like that.
+# renaming is necessary because they used dashes ("-") in the column names and R doesn't like that.
 
 
 view (temp)
 summary (temp)
 glimpse (temp)
 
-ggplot (temp, aes(x=YEAR, y=JJA)+
+ggplot (temp, aes(x=YEAR, y=JJA))+
           geom_line ()+
           geom_smooth (color="red") +
           labs(x = "Year", y = "Mean Summer Temperatures (C)", title = "Mean Summer Temperatures in Buffalo, NY", subtitle = 
                  "Summer includes June, July, and August Data from the Global 
    Historical Climate Network Red Line is a LOESS smooth")
-        ##this is a linear regression model smooth line because method = "lm"
-        ##default of geom_smooth () is loes
+        #this is a linear regression model smooth line because method = "lm" is the default of geom_smooth () is loes
         
         ggsave ("Case_Study_2.png")
         getwd()
-        
-        ##geom_smooth (method="lm") 
-        ##geom_smooth (span=.1)
+      
         

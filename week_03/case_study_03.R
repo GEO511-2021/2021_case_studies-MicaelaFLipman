@@ -1,3 +1,8 @@
+##Micaela Lipman 
+##Case Study 3 
+##GEO 511
+
+
 library (ggplot2)
 library (gapminder)
 library (dplyr)
